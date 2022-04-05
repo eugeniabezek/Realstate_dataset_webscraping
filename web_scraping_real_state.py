@@ -6,7 +6,7 @@ import csv
 import re
 
 #Guardamos los resultados en un fichero csv.
-with open('alquileresQuito.csv', 'a+', newline='', encoding='UTF8') as f:
+with open('real_state_ecuador_dataset.csv', 'a+', newline='', encoding='UTF8') as f:
     thewriter = csv.writer(f)
     header = ["Titulo", "Precio","Provincia", "Lugar", "Num. dormitorios", "Num. banos", "Area", "Num. garages"]
     thewriter.writerow(header)
