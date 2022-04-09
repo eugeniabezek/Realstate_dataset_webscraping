@@ -5,8 +5,13 @@ from csv import writer
 import csv
 import re
 
-#Recibe como parámetros: la url, la posición de la url a partir de la cual hay que agregar el número de página y el número de páginas. 
-def scrape_pages(target_url,pos, max_page):
+def scrape_pages(target_url, pos, max_page):
+    
+    # Recibe como parámetros: 
+    # la url de la pagina web a scrapear
+    # la posición de la url a partir de la cual hay que agregar el número de página
+    # el número de páginas
+    
     try:
     #Guardamos los resultados en un fichero csv.
         with open('real_state_ecuador_dataset.csv', 'a+', newline='', encoding='UTF8') as f:
@@ -18,9 +23,8 @@ def scrape_pages(target_url,pos, max_page):
             for pagina in range(1, max_page):
                 if pagina == 1:
                     url = target_url
-            else: 
-                url = target_url[0:pos]+'page/'+str(pagina)+'/'+target_url[(pos):]
-
+                else: 
+                    url = target_url[0:pos]+'page/'+str(pagina)+'/'+target_url[(pos):]
                 headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36", "Accept-Encoding":"gzip, deflate", "Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", "DNT":"1","Connection":"close", "Upgrade-Insecure-Requests":"1"}
                 page = requests.get(url, headers=headers)
 
@@ -28,7 +32,7 @@ def scrape_pages(target_url,pos, max_page):
                 soup2 = BeautifulSoup(soup1.prettify(), "html.parser")
 
                 lists = soup2.find_all("div", class_ = "item-listing-wrap")
-                        
+
                 for list in lists:
                     try:
                         titulo = list.find("h2", class_ = "item-title").a.text.strip()
@@ -84,7 +88,6 @@ def scrape_pages(target_url,pos, max_page):
                     thewriter.writerow(info)
     except Exception as e: print('Error: Failed to execute'), print(e)
         
-        
 # Llamamos a la clase pasando como agumento la URL que elegimos para la práctica:
-url = 'https://arriendayvende.com/busqueda-avanzada/?keyword=&states%5B%5D=&location%5B%5D=&status%5B%5D=alquiler&bedrooms=&bathrooms=&min-area=&max-area=&property_id=&min-price=0&max-price='
-scrape_pages(url,45,26)   
+url = "https://arriendayvende.com/busqueda-avanzada/?keyword&states%5B0%5D&location%5B0%5D&bedrooms&bathrooms&min-area&max-area&property_id&min-price&max-price=10000"
+scrape_pages(url,45,26) 
