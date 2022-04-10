@@ -11,7 +11,7 @@ Esta práctica se ha realizado bajo el contexto de la asignatura Tipología y ci
 
 * web_scraping_real_state.py: Es el script que contiene el código para generar un dataset a partir del web scraping.
 * real_state_ecuador_dataset.csv: Es el dataset generado, en el siguiente apartado se dan más detalles del mismo.
-* PRA1.pdf: Documento con las respuestas de la práctica.
+* M2.851_20212_Prac1_BezekEugenia_ErikaMartinez.pdf: Documento con las respuestas de la práctica.
 
 ## Detalle del dataset:
 ##### Los campos que formarán el dataset son:
